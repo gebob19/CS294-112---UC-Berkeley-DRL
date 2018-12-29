@@ -1,0 +1,1 @@
+python plot.py data/lb_no_rtg_dna_CartPole-v0_19-12-2018_16-54-46/ data/lb_rtg_dna_CartPole-v0_19-12-2018_16-57-44/ data/lb_rtg_na_CartPole-v0_19-12-2018_17-00-25/  data/sb_no_rtg_dna_CartPole-v0_19-12-2018_16-52-33/ data/sb_rtg_dna_CartPole-v0_19-12-2018_16-53-22/ data/sb_rtg_na_CartPole-v0_19-12-2018_16-54-05/
