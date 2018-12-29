@@ -164,17 +164,10 @@ class QLearner(object):
     # find the estimated value for the value actually taken when in that state
     q_t_ac = tf.reduce_sum(q_t * tf.one_hot(self.act_t_ph, self.num_actions), axis=1)
     
-    # Double Q Learning Impl
-    if double_q:
-        # Evaluate actions with q_functions
-        q_t_tp1 = q_func(obs_tp1_float, self.num_actions, 'q_func', reuse=False)
-        # Evaluate the value of the actions with the target values
-        q_target = self.rew_t_ph + (1.0 - self.done_mask_ph) * gamma * tf.reduce_max(, axis=1)
-    else:
-        # reward(s, a) + gamma * max_a Q'(s', a')
-        # we ignore the q_target at the end of an episode
-        q_target_tp1 = q_func(obs_tp1_float, self.num_actions, 'q_target_func', reuse=False)
-        q_target = self.rew_t_ph + (1.0 - self.done_mask_ph) * gamma * tf.reduce_max(q_target_tp1, axis=1)
+    # reward(s, a) + gamma * max_a Q'(s', a')
+    # we ignore the q_target at the end of an episode
+    q_target_tp1 = q_func(obs_tp1_float, self.num_actions, 'q_target_func', reuse=False)
+    q_target = self.rew_t_ph + (1.0 - self.done_mask_ph) * gamma * tf.reduce_max(q_target_tp1, axis=1)
 
     q_func_vars = tf.get_collection(tf.GraphKeys.GLOBAL_VARIABLES, scope='q_func')
     target_q_func_vars = tf.get_collection(tf.GraphKeys.GLOBAL_VARIABLES, scope='q_target_func')
