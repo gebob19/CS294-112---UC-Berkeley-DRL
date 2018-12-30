@@ -172,7 +172,7 @@ class QLearner(object):
     q_func_vars = tf.get_collection(tf.GraphKeys.GLOBAL_VARIABLES, scope='q_func')
     target_q_func_vars = tf.get_collection(tf.GraphKeys.GLOBAL_VARIABLES, scope='q_target_func')
 
-    self.total_error = huber_loss(q_t_ac, q_target)
+    self.total_error = tf.reduce_mean(huber_loss(q_t_ac, q_target))
     ######
 
     # construct optimization op (with gradient clipping)
