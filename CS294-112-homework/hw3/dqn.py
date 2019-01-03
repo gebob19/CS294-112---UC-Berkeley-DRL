@@ -161,6 +161,7 @@ class QLearner(object):
     # distrib of estimated value for every action (a) given a state s / Q(a, s) 
     q_t = q_func(obs_t_float, self.num_actions, 'q_func', reuse=False)
     self.policy = tf.argmax(q_t, axis=1)
+    
     # find the estimated value for the value actually taken when in that state
     q_t_ac = tf.reduce_sum(q_t * tf.one_hot(self.act_t_ph, self.num_actions), axis=1)
     
