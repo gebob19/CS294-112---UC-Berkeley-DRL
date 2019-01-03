@@ -173,7 +173,7 @@ class QLearner(object):
     q_func_vars = tf.get_collection(tf.GraphKeys.GLOBAL_VARIABLES, scope='q_func')
     target_q_func_vars = tf.get_collection(tf.GraphKeys.GLOBAL_VARIABLES, scope='q_target_func')
 
-    self.total_error = tf.reduce_mean(huber_loss(q_t_ac, q_target))
+    self.total_error = tf.reduce_mean(huber_loss(q_t_ac - q_target))
     ######
 
     # construct optimization op (with gradient clipping)
@@ -248,7 +248,7 @@ class QLearner(object):
         enc = self.replay_buffer.encode_recent_observation()
         action = self.session.run(self.policy, feed_dict={
             self.obs_t_ph: [enc]
-        })
+        })[0]
 
     obs, reward, done, _ = self.env.step(action)
 
@@ -326,6 +326,7 @@ class QLearner(object):
         self.num_param_updates += 1
         if self.num_param_updates % self.target_update_freq == 0:
             self.session.run(self.update_target_fn)
+    self.t += 1
 
   def log_progress(self):
     episode_rewards = get_wrapper_by_name(self.env, "Monitor").get_episode_rewards()
