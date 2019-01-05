@@ -1,0 +1,2 @@
+Iteration	Time	TimestepsThisBatch	PoolSize	MaxEpReturn	LastEpReturn	TimestepsSoFar	Episodes
+0	133.5149850845337	1000	2000	-149.04051561071392	-149.04051561071392	2000	2
