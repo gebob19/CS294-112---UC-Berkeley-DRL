@@ -1,7 +1,8 @@
 # DeepRL
 
 ## CS294-112 - UC Berkeley Deep Reinforcement Learning
-All homeworks implemented with Tensorflow
+http://rail.eecs.berkeley.edu/deeprlcourse/ </br>
+I really enjoyed this course and learned a lot, thanks so much to the entire staff for making it available online!
 
 Homework Summary
 - Hw1: Imitation Learning
